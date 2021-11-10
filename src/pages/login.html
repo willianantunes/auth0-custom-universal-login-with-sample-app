@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>My First Parcel App</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script>
+        // This will store the configuration received by the Identity Provider!
+        var configurationFromProvider;
+        try {
+            configurationFromProvider = JSON.parse(decodeURIComponent(escape(window.atob('@@config@@'))));
+            configurationFromProvider.extraParams = config.extraParams || {};
+        } catch (exception) {
+            console.warn("The configuration value hasn't been provided!")
+        }
+    </script>
+    <script type="module" src="../app.js"></script>
+</head>
+<body>
+
+<h1>Use uma das opções para confirmar sua identidade!</h1>
+
+<button class="btn-login-email-passwordless">Receber chave de acesso rápido por email</button>
+<br/>
+<br/>
+<button class="btn-login-username-or-email">Entrar com email e senha</button>
+
+</body>
+</html>
