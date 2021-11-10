@@ -1,0 +1,26 @@
+@import "./reset";
+
+main {
+  height: 100vh;
+  background: #cfd8dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  padding: 25px;
+  background: aliceblue;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darkgray;
+  box-shadow: slategray 0 5px 15px;
+}
+
+section > aside:last-child {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

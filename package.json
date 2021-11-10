@@ -12,11 +12,12 @@
   "source": "src/pages/login.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build",
+    "build": "parcel build --no-source-maps --dist-dir out",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "test": "jest ./tests"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
     "parcel": "^2.0.1",
     "prettier": "^2.4.1"
   },
