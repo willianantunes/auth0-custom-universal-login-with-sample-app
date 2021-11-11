@@ -10,7 +10,7 @@ exports.onExecutePostUserRegistration = async event => {
   const tenant = event.secrets.TENANT
   const audience = event.secrets.AUDIENCE
   const clientId = event.secrets.APP_CLIENT_ID
-  const clientSecret = event.secrets.APP_CLIENT_ID
+  const clientSecret = event.secrets.APP_CLIENT_SECRET
   // Creating management API
   // https://auth0.com/docs/api/management/v2
   // https://github.com/auth0/node-auth0#management-api-client
