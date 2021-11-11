@@ -11,7 +11,6 @@ export function buildConfigurationFromEnvironment() {
     callbackURL: "http://localhost:8000/api/v1/response-oidc",
     cdn: "https://cdn.auth0.com/",
     clientID: "LnqZXPprrsDaxEYbWfXpPJEmbtuc1F4E",
-    dict: { signin: { title: "Auth0 Auth Playground" } },
     extraParams: {
       protocol: "oauth2",
       response_type: "code",

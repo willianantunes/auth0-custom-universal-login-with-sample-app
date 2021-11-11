@@ -1,13 +1,32 @@
 import { $ } from "../utils/dom"
-import { Auth0Lock } from "auth0-lock"
-import { Auth0LockPasswordless } from "auth0-lock"
+import { Auth0Lock, Auth0LockPasswordless } from "auth0-lock"
 import { buildConfigurationFromEnvironment } from "../auth0/configuration-builder"
 
 export class LoginController {
   constructor() {
     // TODO Refactor it
     this._config = buildConfigurationFromEnvironment()
+    this._theme = {
+      logo: "https://assets-img.juntossomosmais.com.br/images/logo.svg",
+      primaryColor: "#ffa35c",
+    }
     this._language = "pt-br"
+    // https://github.com/auth0/lock#language-dictionary-specification
+    // https://github.com/auth0/lock/blob/master/src/i18n/pt-br.js
+    this._languageDictionary = {
+      title: "",
+      signUpTitle: "",
+      usernameOrEmailInputPlaceholder: "CPF/E-mail",
+      usernameInputPlaceholder: "seu CPF",
+      signUpTerms: `Ao se inscrever, você concorda com nossos <a href="#">termos de serviço</a> e <a href="#">política de privacidade</a>.`,
+      error: {
+        login: {
+          "lock.invalid_username_password": "CPF/E-mail ou senha inválidos.",
+          blocked_user: "A conta está bloqueada",
+        },
+        signUp: { user_exists: "A conta já existe", username_exists: "Já existe uma conta com este dado" },
+      },
+    }
     // Buttons
     this._btnLoginEmailPasswordless = $("button.btn-login-email-passwordless")
     this._btnLoginUsernameOrEmail = $("button.btn-login-username-or-email")
@@ -41,12 +60,8 @@ export class LoginController {
       rememberLastLogin: !this._config.prompt,
       language: this._language,
       languageBaseUrl: this._config.languageBaseUrl,
-      languageDictionary: { title: this._config.dict.signin.title },
-      theme: {
-        logo: "https://assets-img.juntossomosmais.com.br/images/logo.svg",
-        primaryColor: "#ffa35c",
-        secondaryColor: "#ff0000",
-      },
+      languageDictionary: this._languageDictionary,
+      theme: this._theme,
       closable: true,
     })
 
@@ -74,18 +89,14 @@ export class LoginController {
       rememberLastLogin: !this._config.prompt,
       language: this._language,
       languageBaseUrl: this._config.languageBaseUrl,
-      languageDictionary: { title: this._config.dict.signin.title },
-      theme: {
-        //logo: 'YOUR LOGO HERE',
-        primaryColor: this._config.colors.primary ? this._config.colors.primary : "green",
-      },
+      languageDictionary: this._languageDictionary,
+      theme: this._theme,
       prefill: this._config.extraParams.login_hint
         ? { email: this._config.extraParams.login_hint, username: this._config.extraParams.login_hint }
         : null,
       closable: true,
       defaultADUsernameFromEmailPrefix: false,
     })
-
     if (this._config.colors.page_background) {
       var css = ".auth0-lock.auth0-lock .auth0-lock-overlay { background: " + this._config.colors.page_background + " }"
       var style = document.createElement("style")
