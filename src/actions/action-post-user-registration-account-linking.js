@@ -30,6 +30,7 @@ exports.onExecutePostUserRegistration = async event => {
     search_engine: "v3",
     q: `email: "${email}" AND email_verified:true -user_id:"${userId}"`,
   }
+  console.log(`Query to be executed: ${JSON.stringify(bodyFromGetUsers)}`)
   const usersFound = await managementClient.getUsers(bodyFromGetUsers)
   // Merge accounts only if needed
   // TODO Merge metadata
@@ -54,3 +55,12 @@ exports.onExecutePostUserRegistration = async event => {
     }
   }
 }
+
+// exports.onExecutePostUserRegistration = async event => {
+//   const headers = {
+//     "Content-Type": "application/json",
+//   }
+//   const response = await axios.post("https://7fa0-2804-14d-1a86-c345-f432-53aa-394d-7b2e.ngrok.io/api/v1/link-account", event, {
+//     headers,
+//   })
+// }
