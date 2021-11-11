@@ -198,4 +198,21 @@ describe("Playing with Auth0 SDK Management API", () => {
 ]
      */
   })
+
+  test("Should retrieve user by custom query", async () => {
+    // Arrange
+    const someUserFromTheWild = {
+      email: "willianlimaantunes@gmail.com",
+      user_id: "email|618d353f78d57a7db2854d91",
+    }
+    const { email, user_id: userId } = someUserFromTheWild
+    const bodyFromGetUsers = {
+      search_engine: "v3",
+      q: `email: "${email}" AND email_verified:true -user_id:"${userId}"`,
+    }
+    // Act
+    const usersFound = await managementClient.getUsers(bodyFromGetUsers)
+    // Assert
+    expect(usersFound).toBeTruthy()
+  })
 })
