@@ -8,4 +8,6 @@ module.exports = {
   coveragePathIgnorePatterns: ["/scripts/", "/node_modules/"],
   coverageReporters: ["json", "lcov", "text", "text-summary"],
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
+  // The setupFiles array lets you list files that will be read before all tests are run
+  setupFiles: [`<rootDir>/tests/support/env-variables.js`],
 }

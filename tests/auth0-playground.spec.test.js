@@ -5,11 +5,11 @@ describe("Playing with Auth0 SDK Management API", () => {
 
   beforeAll(async () => {
     managementClient = new ManagementClient({
-      domain: `antunes.us.auth0.com`,
-      scope: `read:users update:users`,
-      clientId: `YOUR-CLIENT-ID`,
-      clientSecret: `YOUR-CLIENT-SECRET`,
-      audience: `https://antunes.us.auth0.com/api/v2/`,
+      domain: `${process.env.APP_TENANT}.us.auth0.com`,
+      scope: process.env.APP_MANAGE_USERS_SCOPE,
+      clientId: process.env.APP_CLIENT_ID,
+      clientSecret: process.env.APP_CLIENT_SECRET,
+      audience: process.env.APP_AUDIENCE,
     })
   })
 
