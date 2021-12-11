@@ -1,6 +1,7 @@
-export function buildConfigurationFromEnvironment() {
+export function buildConfigurationFromEnvironmentToLock() {
   if (window.configurationFromProvider) return window.configurationFromProvider
 
+  // In order to get this sample, I've just initiated an authorization code grant type from my App to Universal Login
   return {
     icon: "https://assets-img.juntossomosmais.com.br/images/logo.svg",
     assetsUrl: "",
@@ -36,5 +37,33 @@ export function buildConfigurationFromEnvironment() {
       issuer: "https://antunes.us.auth0.com/",
     },
     colors: { page_background: "#ff0000", primary: "#ffa35c" },
+  }
+}
+
+export function buildConfigurationFromEnvironmentToAuth0js() {
+  if (window.paramsFromProvider) return window.paramsFromProvider
+
+  // In order to get this sample, I've just initiated an authorization code grant type from my App to Universal Login
+  return {
+    language: "pt-br",
+    overrides: { __tenant: "antunes", __token_issuer: "https://login.willianantunes.com/" },
+    domain: "login.willianantunes.com",
+    clientID: "LnqZXPprrsDaxEYbWfXpPJEmbtuc1F4E",
+    redirectUri: "http://app.local:8000/api/v1/response-oidc",
+    responseType: "code",
+    protocol: "oauth2",
+    response_type: "code",
+    scope: "openid profile email",
+    _csrf: "DFOa6ahF-dg1jBrknR83SCCDdNPZdbg6_drw",
+    _intstate: "deprecated",
+    state:
+      "hKFo2SBmRzZ5V19lMl9qRjNnZkw5Q0RkbzNjRUZzRC01M3NCZaFupWxvZ2luo3RpZNkgR3BfNmt4c0tyRFVtMFdUSFBnb1VxVThXOEtGdHJQMzijY2lk2SBMbnFaWFBwcnJzRGF4RVliV2ZYcFBKRW1idHVjMUY0RQ",
+    plugins: { plugins: [] },
+    _sendTelemetry: true,
+    _timesToRetryFailedRequests: 0,
+    tenant: "antunes",
+    token_issuer: "https://login.willianantunes.com/",
+    rootUrl: "https://login.willianantunes.com",
+    universalLoginPage: true,
   }
 }

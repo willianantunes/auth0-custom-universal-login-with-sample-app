@@ -28,7 +28,9 @@
   },
   "dependencies": {
     "auth0": "^2.37.0",
+    "auth0-js": "^9.18.0",
     "auth0-lock": "^11.31.1",
+    "axios": "^0.24.0",
     "express": "^4.17.1"
   }
 }

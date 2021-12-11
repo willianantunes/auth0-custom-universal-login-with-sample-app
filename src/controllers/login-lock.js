@@ -1,11 +1,11 @@
 import { $ } from "../utils/dom"
 import { Auth0Lock, Auth0LockPasswordless } from "auth0-lock"
-import { buildConfigurationFromEnvironment } from "../auth0/configuration-builder"
+import { buildConfigurationFromEnvironmentToLock } from "../auth0/configuration-builder"
 
 export class LoginController {
   constructor() {
     // TODO Refactor it
-    this._config = buildConfigurationFromEnvironment()
+    this._config = buildConfigurationFromEnvironmentToLock()
     this._theme = {
       logo: "https://assets-img.juntossomosmais.com.br/images/logo.svg",
       primaryColor: "#ffa35c",
