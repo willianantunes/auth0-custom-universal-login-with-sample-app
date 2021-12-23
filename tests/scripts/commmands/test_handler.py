@@ -36,20 +36,21 @@ class HandlerTests(BaseTestCase):
             with mock.patch.object(handler.settings, "AUTH0_DOMAIN", self.domain):
                 with mock.patch.object(handler.settings, "ALL_APPLICATIONS_CLIENT_ID", self.all_applications_client_id):
                     with mock.patch.object(handler.settings, "AUTH0_ACCESS_TOKEN", self.access_token):
-                        mocked_boto3.resource.return_value = self.s3
-                        # Act
-                        main()
-                        # Assert
-                        self.bucket, _, css_file_key = wrapped_upload_file.call_args_list[0][0]
-                        _, _, js_file_key = wrapped_upload_file.call_args_list[1][0]
-                        _, _, _, content_from_html_file = wrapped_auth0.call_args_list[0][0]
-                        assert wrapped_upload_file.call_count == 2
-                        wrapped_retrieve_bucket.assert_called_with(self.s3, self.bucket_name)
-                        wrapped_auth0.assert_called_with(
-                            self.domain, self.access_token, self.all_applications_client_id, content_from_html_file
-                        )
-                        assert self._object_exist(self.bucket.Object(css_file_key))
-                        assert self._object_exist(self.bucket.Object(js_file_key))
+                        with mock.patch.object(handler.settings, "CORS_ALLOWED_ORIGINS", self.allowed_origins):
+                            mocked_boto3.resource.return_value = self.s3
+                            # Act
+                            main()
+                            # Assert
+                            self.bucket, _, css_file_key = wrapped_upload_file.call_args_list[0][0]
+                            _, _, js_file_key = wrapped_upload_file.call_args_list[1][0]
+                            _, _, _, content_from_html_file = wrapped_auth0.call_args_list[0][0]
+                            assert wrapped_upload_file.call_count == 2
+                            wrapped_retrieve_bucket.assert_called_with(self.s3, self.bucket_name)
+                            wrapped_auth0.assert_called_with(
+                                self.domain, self.access_token, self.all_applications_client_id, content_from_html_file
+                            )
+                            assert self._object_exist(self.bucket.Object(css_file_key))
+                            assert self._object_exist(self.bucket.Object(js_file_key))
 
     def _object_exist(self, bucket_object):
         try:

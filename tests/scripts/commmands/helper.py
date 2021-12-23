@@ -7,6 +7,7 @@ class BaseTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.domain = "AUTH0_DOMAIN"
         self.access_token = "AUTH0_ACCESS_TOKEN"
+        self.allowed_origins = "CORS_ALLOWED_ORIGINS"
         self.all_applications_client_id = "ALL_APPLICATIONS_CLIENT_ID"
         self.bucket_name = "BUCKET_NAME"
         self.aws_s3_region = "AWS_S3_REGION"
