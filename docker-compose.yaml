@@ -1,8 +1,8 @@
 version: "3.8"
 
 services:
-  apply-page-classic:
+  apply-classic-page:
     build:
       context: .
-      dockerfile: Dockerfile
-    env_file: .env.development
+      dockerfile: custom-universal-login/Dockerfile
+    env_file: custom-universal-login/.env.development

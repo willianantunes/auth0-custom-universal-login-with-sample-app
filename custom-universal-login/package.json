@@ -1,14 +1,6 @@
 {
   "name": "auth0-custom-universal-login",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/willianantunes/auth0-custom-universal-login.git"
-  },
-  "bugs": {
-    "url": "https://github.com/willianantunes/auth0-custom-universal-login/issues"
-  },
-  "homepage": "https://github.com/willianantunes/auth0-custom-universal-login#readme",
   "source": "src/pages/login.html",
   "scripts": {
     "start": "parcel",
