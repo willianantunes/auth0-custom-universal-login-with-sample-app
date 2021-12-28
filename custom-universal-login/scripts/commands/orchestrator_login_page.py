@@ -8,7 +8,7 @@ import boto3
 from botocore.exceptions import ClientError
 
 from scripts.commands import settings
-from scripts.commands.update_template import update_login_page_classic
+from scripts.commands.auth0_handler import management_api
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent.parent
 
@@ -92,12 +92,7 @@ def main():
     print(f"CSS and JS files have been uploaded")
 
     page_as_str = load_content_as_string(str(static_files.html_file))
-    update_login_page_classic(
-        settings.AUTH0_DOMAIN,
-        settings.AUTH0_ACCESS_TOKEN,
-        settings.ALL_APPLICATIONS_CLIENT_ID,
-        page_as_str,
-    )
+    management_api.update_login_page_classic(settings.ALL_APPLICATIONS_CLIENT_ID, page_as_str)
     print("HTML file has been updated on Auth0")
 
     bucket_cors, has_cors = retrieve_buckets_cors(s3, settings.BUCKET_NAME)
