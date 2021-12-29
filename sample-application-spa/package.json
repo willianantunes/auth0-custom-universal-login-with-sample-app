@@ -1,5 +1,5 @@
 {
-  "name": "sample-application-client",
+  "name": "sample-application-client-spa",
   "private": true,
   "scripts": {
     "dev": "next dev",
