@@ -1,11 +1,16 @@
 import os
+import pathlib
 
 from logging import Formatter
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from sample_application_regular_webapp.apps.core.apps import CoreConfig
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR.joinpath(".env.development"), verbose=True)
 
 
 # Quick-start development settings - unsuitable for production
@@ -151,8 +156,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #####
 # Custom settings for Auth0
 
-SOCIAL_AUTH_AUTH0_DOMAIN = "login.willianantunes.com"
-# SOCIAL_AUTH_AUTH0_DOMAIN = "antunes.us.auth0.com"
-SOCIAL_AUTH_AUTH0_KEY = "LnqZXPprrsDaxEYbWfXpPJEmbtuc1F4E"
-SOCIAL_AUTH_AUTH0_SECRET = "n2buU4kBQCWyAvdcb2HAGeRL1jfHq4iCfpdBN2f3yh-6EHbdDMJB_jzZuTf1S_aL"
-SOCIAL_AUTH_AUTH0_SCOPE = ["openid", "profile", "email"]
+SOCIAL_AUTH_AUTH0_DOMAIN = os.getenv("SOCIAL_AUTH_AUTH0_DOMAIN")
+SOCIAL_AUTH_AUTH0_KEY = os.getenv("SOCIAL_AUTH_AUTH0_KEY")
+SOCIAL_AUTH_AUTH0_SECRET = os.getenv("SOCIAL_AUTH_AUTH0_SECRET")
+SOCIAL_AUTH_AUTH0_SCOPE = os.getenv("SOCIAL_AUTH_AUTH0_SCOPE").split(",")

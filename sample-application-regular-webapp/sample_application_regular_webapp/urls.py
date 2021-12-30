@@ -20,6 +20,8 @@ urlpatterns = [
     path("login-auth-code", views.initiate_login_flow, name="login-auth-code-flow"),
     # http://localhost:8000/logout
     path("logout", views.logout, name="logout"),
+    path("link-account", views.link_account, name="link-account"),
+    path("unlink-account", views.unlink_account, name="unlink-account"),
     # APIs
     path("health-check", api_views.health_check, name="health-check"),
     # http://localhost:8000/api/v1/response-oidc

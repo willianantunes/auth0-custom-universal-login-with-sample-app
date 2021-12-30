@@ -9,8 +9,13 @@
             <p>Your ID is <strong>{{ request.session.user.sub }}</strong>!</p>
 
             <button class="btn-see-your-data">Click here to see your data through USERINFO endpoint!</button>
-        {% endif %}
-        {% if 'user' not in request.session %}
+
+            {% include "core/components/profile.html" %}
+            {% if suggested_users and suggested_users|length > 0 %}
+                {% include "core/components/same_accounts.html" %}
+            {% endif %}
+            {% include "core/components/linked_accounts.html" %}
+        {% else %}
             <p>I know nothing about you. Log in first!</p>
         {% endif %}
     </main>

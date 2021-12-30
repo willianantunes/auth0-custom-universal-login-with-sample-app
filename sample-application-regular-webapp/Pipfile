@@ -9,6 +9,7 @@ djangorestframework = "*"
 python-jose = "*"
 requests = "*"
 auth0-python = "*"
+python-dotenv = "*"
 
 [dev-packages]
 pytest-django = "*"

@@ -187,11 +187,11 @@ class OIDCProvider:
         cls.jwt_public_keys_algorithms = jwt_public_keys_algorithms
 
     @classmethod
-    def build_authorization_url(cls, redirect_uri: str, state: str):
+    def build_authorization_url(cls, redirect_uri: str, state: str, params: Optional[dict] = None):
         # https://auth0.com/docs/api/authentication#authorization-code-flow
         # https://auth0.com/docs/login/authentication/add-login-auth-code-flow#authorize-user
         auth_url = cls.oidc_configuration_document.authorization_endpoint
-        params = {
+        provided_params = {
             "state": state,
             "client_id": cls.app_client_key,
             "response_type": "code",
@@ -201,8 +201,11 @@ class OIDCProvider:
             # Instead of passing the parameter below, I changed the tenant itself!
             # "ui_locales": "pt-BR",
         }
+        if params:
+            provided_params = provided_params | params
+
         logger.debug("Building authorization URL...")
-        return build_url_with_query_strings(auth_url, params)
+        return build_url_with_query_strings(auth_url, provided_params)
 
     @classmethod
     def acquire_token_by_auth_code_flow(cls, code: str, redirect_uri: str):
