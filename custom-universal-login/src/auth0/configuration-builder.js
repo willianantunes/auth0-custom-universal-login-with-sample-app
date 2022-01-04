@@ -54,10 +54,6 @@ export function buildConfigurationFromEnvironmentToAuth0js() {
     protocol: "oauth2",
     response_type: "code",
     scope: "openid profile email",
-    _csrf: "DFOa6ahF-dg1jBrknR83SCCDdNPZdbg6_drw",
-    _intstate: "deprecated",
-    state:
-      "hKFo2SBmRzZ5V19lMl9qRjNnZkw5Q0RkbzNjRUZzRC01M3NCZaFupWxvZ2luo3RpZNkgR3BfNmt4c0tyRFVtMFdUSFBnb1VxVThXOEtGdHJQMzijY2lk2SBMbnFaWFBwcnJzRGF4RVliV2ZYcFBKRW1idHVjMUY0RQ",
     plugins: { plugins: [] },
     _sendTelemetry: true,
     _timesToRetryFailedRequests: 0,
