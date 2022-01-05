@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Alert, Button, Form } from "react-bootstrap"
 
-const DatabaseLogin = ({ auth0 }) => {
+const DatabaseLogin = ({ auth0, changePasswordHook }) => {
   // Variables
   const databaseConnectionName = "Username-Password-Authentication"
   // States
@@ -54,6 +54,10 @@ const DatabaseLogin = ({ auth0 }) => {
     // https://auth0.com/docs/libraries/auth0js#webauth-login-
     auth0.login(options, callback)
   }
+  const forgotPassword = event => {
+    event.preventDefault()
+    changePasswordHook()
+  }
 
   return (
     <Form onSubmit={submitDatabaseLogin}>
@@ -65,7 +69,9 @@ const DatabaseLogin = ({ auth0 }) => {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Sua senha</Form.Label>
         <Form.Control type="password" value={formState.password} onChange={handleChange} name="password" />
-        <Form.Text className="text-muted">Esqueci minha senha</Form.Text>
+        <a href="#" className="text-muted" onClick={forgotPassword}>
+          Esqueci minha senha
+        </a>
       </Form.Group>
       <Button variant="primary" disabled={formState.sending} type="submit">
         {formState.signInFieldValue}
