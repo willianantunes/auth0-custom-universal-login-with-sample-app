@@ -39,6 +39,8 @@ const OneTimePasswordLoginLastStep = ({ auth0, email, transactionId, connectionN
         let message = error.description
         if (message === "Wrong email or verification code.") {
           message = "E-mail ou código inválido."
+        } else if (message === "The verification code has expired. Please try to login again.") {
+          message = "O código de verificação expirou. Por favor tente de novo."
         }
         endFlowInformingErrorHook(message)
       }
@@ -52,7 +54,7 @@ const OneTimePasswordLoginLastStep = ({ auth0, email, transactionId, connectionN
     <Form onSubmit={submitPasswordlessLogin}>
       {formState.showError && <Alert variant="danger">{formState.errorMessage}</Alert>}
       <Alert variant="success">
-        Verifique sua caixa postal! O código expira em 10 minutos e só pode ser usado uma única vez
+        Verifique sua caixa postal! O código expira em 10 minutos e só pode ser usado uma única vez.
       </Alert>
       <Form.Group className="mb-3" controlId="formBasicEmailOrUsername">
         <Form.Label>Código temporário de 6 dígitos</Form.Label>
